@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
@@ -435,12 +436,31 @@ const App: React.FC = () => {
 
   if (publicViewId) {
     const item = items.find(i => i && i.id === publicViewId);
+    
+    // Show Loading state if currently syncing and item is not yet available
+    if (isSyncing && !item) {
+      return (
+        <div className="min-h-screen bg-[#f8fafc] flex flex-col items-center justify-center p-4">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center space-y-4"
+          >
+            <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto" />
+            <h2 className="text-xl font-black text-slate-800 tracking-tight uppercase">Loading Data / กำลังโหลดข้อมูล...</h2>
+            <p className="text-xs font-bold text-slate-400">Please wait while we sync with cloud</p>
+          </motion.div>
+        </div>
+      );
+    }
+
     return (
       <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-4">
         {!item ? (
           <div className="text-center">
-            <h2 className="text-2xl font-black">ไม่พบข้อมูล / Data Not Found</h2>
-            <button onClick={handleBackFromPublicView} className="mt-6 px-8 py-3 bg-indigo-600 text-white rounded-2xl shadow-xl">กลับหน้าหลัก / Back to Home</button>
+            <h2 className="text-2xl font-black text-slate-800 tracking-tight">ไม่พบข้อมูล / Data Not Found</h2>
+            <p className="mt-2 text-slate-400 font-medium">Device ID: <span className="font-black">{publicViewId}</span></p>
+            <button onClick={handleBackFromPublicView} className="mt-8 px-8 py-3 bg-indigo-600 text-white rounded-2xl shadow-xl font-black text-xs uppercase transition-all active:scale-95">กลับหน้าหลัก / Back to Home</button>
           </div>
         ) : (
           <motion.div initial="hidden" animate="visible" variants={modalAnimate} className="w-full max-w-md bg-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden print-visible">
