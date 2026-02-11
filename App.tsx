@@ -440,8 +440,8 @@ const App: React.FC = () => {
             <div className="bg-amber-50 border border-amber-200 p-6 rounded-[2rem] space-y-4">
               <div className="flex gap-4"><AlertCircle className="text-amber-600 shrink-0" size={20} /><p className="text-[12px] font-bold text-amber-900 leading-relaxed"><strong>คำแนะนำสำคัญ:</strong> เพื่อป้องกัน Error "null reading getDataRange" กรุณาตรวจสอบว่าใน Google Sheets ของคุณมีแผ่นงานที่ชื่อว่า <span className="underline font-black">Data</span> อยู่ด้วยครับ</p></div>
               <ul className="text-[10px] text-amber-800 font-bold list-disc ml-8 space-y-1">
-                <li>Extensions > Apps Script</li>
-                <li>Deploy > New Deployment > Web App</li>
+                <li>Extensions &gt; Apps Script</li>
+                <li>Deploy &gt; New Deployment &gt; Web App</li>
                 <li>Who has access: <strong>Anyone</strong></li>
               </ul>
             </div>
