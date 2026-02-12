@@ -1,24 +1,33 @@
+
 export interface PMItem {
-  id: string;
-  date: string;
-  nextPmDate?: string; 
-  department: string;
-  device: 'Computer' | 'Printer';
-  personnel: string; // Column F: User / ผู้ใช้
-  status: 'Completed' | 'In Progress' | 'Pending'; // Column G
-  deviceStatus?: string; // Column H
-  activity: string;
-  // Details
-  computerName: string; // Column I
-  computerUser: string; // Column J: User computer / ผู้ใช้คอมพิวเตอร์
-  password?: string; // Column K
-  serverPassword?: string; // Column L
-  antivirus?: string; // Column M
-  // Lifecycle & Warranty
-  startDate?: string;     // วันเริ่มใช้งาน
-  warrantyExpiry?: string; // วันหมดประกัน
-  spareField?: string;     // ฟิลด์สำรอง / ข้อมูลเพิ่มเติม
-  imageUrl?: string;      // รูปภาพอุปกรณ์ (Base64)
+  // A-O (Indices 0-14)
+  id: string;               // A: ID
+  date: string;             // B: Last PM Date
+  nextPmDate?: string;      // C: Next PM Date
+  department: string;       // D: Department
+  device: 'Computer' | 'Printer'; // E: Category
+  personnel: string;        // F: Personnel/User
+  status: 'Completed' | 'In Progress' | 'Pending'; // G: Status
+  activity?: string;        // H: PM Activities (Checklist)
+  computerName?: string;    // I: Hostname
+  computerUser?: string;    // J: Login Account
+  password?: string;        // K: Machine Password
+  serverPassword?: string;  // L: Server Password
+  antivirus?: string;       // M: Antivirus Info
+  imageUrl?: string;        // N: Image URL (Base64 or Cloud Link)
+  technician?: string;      // O: Technician Name
+  
+  // P-V (Indices 15-21)
+  startDate?: string;       // P: Start Date
+  warrantyExpiry?: string;  // Q: Warranty Expiration
+  spareField?: string;      // R: Notes / Spare Parts
+  assetName?: string;       // S: Asset Name
+  model?: string;           // T: Spec / Model
+  serialNumber?: string;    // U: Serial Number
+  location?: string;        // V: Physical Location
+
+  // UI Only
+  deviceStatus?: string; 
 }
 
 export interface DeptWorkload {
